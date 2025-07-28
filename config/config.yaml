@@ -1,0 +1,68 @@
+# AI Platform Python版本配置文件
+server:
+  host: "0.0.0.0"
+  port: 8088
+  workers: 4
+
+database:
+  url: "sqlite:///./aiplatform.db"
+  echo: false
+
+# GPU服务器配置
+gpu_servers:
+  - name: "GPU-Server-1"
+    host: "192.168.1.30"
+    port: 22
+    username: "hsl"
+    password: "88888888"
+    gpu_count: 4
+    enabled: true
+    model_path: "/home/w/models"
+  - name: "GPU-Server-2"
+    host: "192.168.1.100"
+    port: 22
+    username: "admin"
+    password: "password"
+    gpu_count: 8
+    enabled: false
+    model_path: "/home/admin/models"
+
+# 模型存储配置
+model_storage:
+  base_path: "./models"
+  max_storage_gb: 1000
+
+# ModelScope配置
+modelscope:
+  api_url: "https://www.modelscope.cn"
+  download_timeout: 3600
+
+# VLLM配置
+vllm:
+  default_port_range:
+    start: 8000
+    end: 8100
+  default_gpu_memory_utilization: 0.9
+  default_max_model_len: 4096
+
+# 监控配置
+monitoring:
+  gpu:
+    interval: 5  # GPU监控间隔(秒)
+    history_retention: 24  # 历史数据保留时间(小时)
+  system:
+    interval: 5  # 系统资源监控间隔(秒)
+    history_retention: 24  # 历史数据保留时间(小时)
+  token:
+    interval: 10  # Token统计间隔(秒)
+    history_retention: 168  # 历史数据保留时间(小时)
+  websocket:
+    gpu_push_interval: 5  # GPU数据推送间隔(秒)
+    system_push_interval: 5  # 系统资源数据推送间隔(秒)
+    token_push_interval: 10  # Token数据推送间隔(秒)
+  max_error_count: 100
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s" 
