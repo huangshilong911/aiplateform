@@ -1,0 +1,62 @@
+database:
+  echo: false
+  url: sqlite:///./aiplatform.db
+gpu_servers:
+- enabled: false
+  gpu_count: 2
+  host: 192.168.1.30
+  model_path: /home/hsl/workspace_hsl/model/
+  name: GPU-Server-1
+  password: '88888888'
+  port: 22
+  username: hsl
+- enabled: false
+  gpu_count: 8
+  host: 192.168.1.100
+  model_path: /home/admin/models
+  name: GPU-Server-2
+  password: password
+  port: 22
+  username: admin
+- enabled: true
+  gpu_count: 2
+  host: 192.168.1.30
+  model_path: /home/hsl/workspace_hsl/model/
+  name: GPU-Server-3
+  password: qwer1234
+  port: 22
+  username: root
+logging:
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  level: INFO
+model_storage:
+  base_path: ./models
+  max_storage_gb: 1000
+modelscope:
+  api_url: https://www.modelscope.cn
+  download_timeout: 3600
+monitoring:
+  gpu:
+    history_retention: 24
+    interval: 3
+  max_error_count: 100
+  system:
+    history_retention: 24
+    interval: 3
+  token:
+    history_retention: 168
+    interval: 10
+  websocket:
+    gpu_push_interval: 3
+    system_push_interval: 3
+    token_push_interval: 10
+server:
+  host: 0.0.0.0
+  port: 8088
+  workers: 4
+vllm:
+  default_gpu_memory_utilization: 0.9
+  default_max_model_len: 4096
+  default_port_range:
+    end: 8100
+    start: 8000
